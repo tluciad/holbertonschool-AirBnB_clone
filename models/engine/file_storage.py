@@ -10,29 +10,32 @@ class FileStorage:
     To serialize and deserialize files into and from Json
     """
 
-    __file_path = "__name__ + .json"
+    __file_path = "file.json"
     __objects = {}
-
 
     def __init__(self):
         """Class constructor"""
 
-
     def all(self):
         return self.__objects
 
-
     def new(self, obj):
-
-
+        """sets in __objects the obj"""
+        self.__objects[f"{obj.__class__.__name__}.{obj.id}"] = obj
 
     def save(self):
-        for obj_id in all_objs.keys():
-            obj = all_objs[obj_id]
-        with open(self.__file_path, "w") as write:
-            json.dump(self.__objects, write)
+        """serializes __objects dictionary to the JSON file"""
+        Dict = {}
+        for key, value in self.__objects.items():
+            Dict[key] = value.to_dict()
+        with open(self.__file_path, "w", encoding='utf-8') as write:
+            json.dump(Dict, write)
 
     def reload(self):
-        if path.exists(self.__name__ + ".json"):
-            data = json.loads(self.__name__ + ".json")
-        return (data)
+        """deserializes the JSON file to __objects"""
+        dictionaryofdictionaries = {}
+        try:
+            with open(self.__file_path, "r") as r:
+                dictionaryofdictionaries = json.load(r)
+        except:
+            pass
