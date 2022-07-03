@@ -2,7 +2,7 @@
 
 """Module for FileStorage"""
 import json
-from models.user import User
+from models import base_model, user, state, city, amenity, place, review
 
 
 class FileStorage:
