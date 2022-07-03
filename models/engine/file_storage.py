@@ -2,6 +2,7 @@
 
 """Module for FileStorage"""
 import json
+from models.user import User
 
 
 class FileStorage:
