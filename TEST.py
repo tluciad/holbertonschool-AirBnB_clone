@@ -2,8 +2,6 @@
 import datetime
 
 import uuid
+from console import HBNBCommand
 
-datetime_object = datetime.datetime.now()
-print(datetime_object)
-print(uuid.uuid4())
-print(type(str(uuid.uuid4())))
+HBNBCommand().cmdloop()
