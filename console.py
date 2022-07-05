@@ -124,7 +124,7 @@ class HBNBCommand(cmd.Cmd):
 
         try:
             model = eval(ARG[0])
-        except ARG[0].DoesNotExist:
+        except Exception as e:
             print("** class doesn't exist **")
             return
 
