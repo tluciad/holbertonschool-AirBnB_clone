@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-"""Console"""
+"""Console that contains the entry point of the command interpreter"""
 
 import cmd
 import models
@@ -25,6 +25,7 @@ class HBNBCommand(cmd.Cmd):
     file = None
 
     def emptyline(self):
+        """empty line ENTER dont execute anything"""
         pass
 
     def do_quit(self, arg):
@@ -36,7 +37,7 @@ class HBNBCommand(cmd.Cmd):
         return(True)
 
     def do_create(self, arg):
-
+        """creates a new instance of BaseModel"""
         if arg == "":
             print("** class name missing **")
             return
@@ -50,6 +51,7 @@ class HBNBCommand(cmd.Cmd):
             return
 
     def do_show(self, arg):
+        """prints the string representation of an instance"""
         ARG = arg.split()
         if len(ARG) < 1:
             print("** class name missing **")
@@ -72,6 +74,7 @@ class HBNBCommand(cmd.Cmd):
         print("** no instance found **")
 
     def do_destroy(self, arg):
+        """deletes an instance based on the clas name and id"""
         ARG = arg.split()
         if len(ARG) <= 1:
             print("** class name missing **")
@@ -96,6 +99,7 @@ class HBNBCommand(cmd.Cmd):
         return
 
     def do_all(self, arg):
+        """prints all string representation of all instances"""
         ARG = arg.split()
         str_list = []
         obj_dict = storage.all()
@@ -116,8 +120,8 @@ class HBNBCommand(cmd.Cmd):
             return
 
     def do_update(self, arg):
+        """"updates an instance based on the class name and id"""
         ARG = arg.split()
-
         if len(ARG) == 0:
             print("** class name missing **")
             return
