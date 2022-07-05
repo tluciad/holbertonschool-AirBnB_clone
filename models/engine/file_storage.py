@@ -22,6 +22,7 @@ class FileStorage:
         """Class constructor"""
 
     def all(self):
+        """ return dictionary"""
         return self.__objects
 
     def new(self, obj):
