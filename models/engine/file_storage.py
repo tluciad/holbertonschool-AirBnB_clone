@@ -10,6 +10,7 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 
+
 class FileStorage:
     """Class FileStorage
     To serialize and deserialize files into and from Json
@@ -22,6 +23,7 @@ class FileStorage:
         """Class constructor"""
 
     def all(self):
+        """ return dictionary"""
         return self.__objects
 
     def new(self, obj):
@@ -40,5 +42,5 @@ class FileStorage:
         try:
             with open(self.__file_path, "r") as r:
                 self.__objects = json.loads(r.read())
-        except:
+        except Exception as e:
             pass
