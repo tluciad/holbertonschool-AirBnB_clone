@@ -41,7 +41,7 @@ __nb_objects: number of instances
         models.storage.save()
 
     def to_dict(self):
-        """return a dictionary"""
+        """method to return a dictionary"""
         Base_dict = self.__dict__
         Base_dict["__class__"] = self.__class__.__name__
         Base_dict["created_at"] = self.created_at.isoformat()
