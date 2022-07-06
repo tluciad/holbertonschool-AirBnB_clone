@@ -11,6 +11,7 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 from datetime import datetime
+import pep8 
 
 
 class TestFileStorageClass(unittest.TestCase):
@@ -64,6 +65,18 @@ class TestFileStorageClass(unittest.TestCase):
 		m_test = FileStorage()
 		self.assertTrue(hasattr(m_test, "reload"), True)
 
+	def test_pep8_conformance_file_storage(self):
+		"""
+		Method that tests:
+			if a file meet with pep8 criteria
+		"""
+		style = pep8.StyleGuide()
+		check = style.check_files(['models/place.py'])
+		self.assertEqual(
+			check.total_errors,
+			0,
+			'PEP8 style errors: %d' % check.total_errors
+		)
 
 if __name__ == "__main__":
     unittest.main()
