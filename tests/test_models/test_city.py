@@ -46,6 +46,12 @@ class TestUserClass(unittest.TestCase):
 		output = f"[{u1.__class__.__name__}] ({u1.id}) {u1.__dict__}"
 		self.assertEqual(output, str(u1))
 
+	def test_City_state_id(self):
+		'''Tests state_id for City'''
+		c1 = City()
+		self.assertTrue(hasattr(c1, "state_id"))
+		self.assertEqual(type(c1.state_id), str)
+
 
 if __name__ == "__main__":
     unittest.main()
