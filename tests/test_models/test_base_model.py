@@ -1,7 +1,6 @@
 #!/usr/bin/python3
-"""
-Instantiating BaseModel.
-"""
+"""Instantiating BaseModel"""
+
 import unittest
 from models.base_model import BaseModel
 import pycodestyle
