@@ -41,50 +41,49 @@ class HBNBCommand(cmd.Cmd):
         if arg == "":
             print("** class name missing **")
             return
-        ARG = arg.split()
-        try:
-            INST = eval(ARG[0])()
-            INST.save()
-            print(INST.id)
-        except ARG[0].DoesNotExist:
+        elif arg not in class_models:
             print("** class doesn't exist **")
             return
+        INST = eval(arg)()
+        INST.save()
+        print(INST.id)
 
     def do_show(self, arg):
         """prints the string representation of instance"""
-        ARG = arg.split()
-        if len(ARG) < 1:
+        if (ARG) == "":
             print("** class name missing **")
             return
+        ARG = arg.split()
 
         if ARG[0] not in class_models:
             print("** class doesn't exist **")
             return
 
-        if len(ARG) < 2:
+        elif len(ARG) == 1:
             print("** instance id missing **")
             return
 
         dict = storage.all()
         for key, value in dict.items():
             if f"{ARG[0]}.{ARG[1]}" == key:
-                print(value)
+                print(dict[key])
                 return
 
         print("** no instance found **")
 
     def do_destroy(self, arg):
         """deletes an instance based on the clas name and id"""
-        ARG = arg.split()
-        if len(ARG) <= 1:
+
+        if ARG == "":
             print("** class name missing **")
             return
+        ARG = arg.split()
 
         if ARG[0] not in class_models:
             print("** class doesn't exist **")
             return
 
-        if len(ARG) < 2:
+        elif len(ARG) == 1:
             print("** instance id missing **")
             return
 
@@ -109,15 +108,15 @@ class HBNBCommand(cmd.Cmd):
                 str_list.append(str(value))
             print(str_list)
             return
-
-        if ARG[0] in class_models:
-            for key, value in obj_dict.items():
-                if ARG[0] in key:
-                    str_list.append(str(value))
-            print(str_list)
-        else:
-            print("** class doesn't exist **")
-            return
+        elif len(ARG) == 1:
+            if ARG[0] in class_models:
+                for key, value in obj_dict.items():
+                    if ARG[0] in key:
+                        str_list.append(str(value))
+                print(str_list)
+            else:
+                print("** class doesn't exist **")
+                return
 
     def do_update(self, arg):
         """"updates an instance based on the class name and id"""
@@ -132,7 +131,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return
 
-        if len(ARG) < 2:
+        if len(ARG) == 1:
             print("** instance id missing **")
             return
 
@@ -146,16 +145,13 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
             return
 
-        if len(ARG) < 3:
+        if len(ARG) == 2:
             print("** attribute name missing **")
             return
 
-        if len(ARG) < 4:
+        if len(ARG) == 3:
             print("** value missing **")
             return
-
-        if len(ARG) > 4:
-            ARG = ARG[:3]
 
         dict = storage.all()
         for key, value in dict.items():
