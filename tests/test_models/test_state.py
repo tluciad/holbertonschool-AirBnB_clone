@@ -37,7 +37,7 @@ class TestUserClass(unittest.TestCase):
 	def test_user_name(self):
 		"""test to check user name"""
 		User_1 = State()
-		self.assertEqual(type(User_1.id), str)
+		self.assertEqual(type(User_1.name), str)
 		self.assertTrue(hasattr(User_1, "name"))
 
 	def test_str_output_user(self):
