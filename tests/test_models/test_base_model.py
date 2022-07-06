@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """Instantiating BaseModel"""
-
-import unittest
 from models.base_model import BaseModel
-import pycodestyle
+import models
+from datetime import datetime
+import unittest
 
 
 class TestBaseModel(unittest.TestCase):
