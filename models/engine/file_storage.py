@@ -44,5 +44,5 @@ class FileStorage:
                 for key, value in (json.load(f)).items():
                     value = eval(value["__class__"])(**value)
                     self.__objects[key] = value
-        except:
+        except Exception as e:
             pass
