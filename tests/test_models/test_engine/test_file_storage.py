@@ -1,5 +1,8 @@
 #!/usr/bin/python3
-"""Unittest for FileStorage class"""
+"""
+Instantiating Users
+"""
+
 from models.engine.file_storage import FileStorage
 import models
 import unittest
@@ -10,28 +13,33 @@ from models.state import State
 from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
-from datetime import datetime
 import pep8
 
 
 class TestFileStorageClass(unittest.TestCase):
+    """class test"""
 
-    def test_instance_creation(self):
+    @classmethod
+    def setUpClass(cls):
+        """
+        Setting up class attributes
+        """
+
+    def test_class_instance(self):
         """"Test that instance of filestorage is properly created"""
         Storage = FileStorage()
         self.assertTrue(type(Storage) == FileStorage)
         self.assertTrue(isinstance(Storage, FileStorage))
 
-    def test_storage_all(self):
-        """Tests method all"""
-        FS = FileStorage()
-        self.assertEqual(type(FS.all()), dict)
+    def test_all(self):
+        """ Test method all"""
+        obj = models.storage.all()
+        self.assertIsInstance(obj, dict)
 
     def test_storage_new(self):
         """Test method new"""
-        FS = FileStorage()
-        FS.new(BaseModel())
-        self.assertTrue(FS.all())
+        FS = FileStorage().all()
+        self.assertEqual(type(FS), dict)
 
     def test_storage_save(self):
         """Test method save"""
@@ -43,24 +51,14 @@ class TestFileStorageClass(unittest.TestCase):
             Json_full = r.read()
             self.assertTrue(f"BaseModel.{B_M.id}" in Json_full)
 
-    def test_storage_reload(self):
-        """Test method reload"""
-        FS = FileStorage()
-        B_M = BaseModel()
-        Obj_Dict = FS.all()
-        B_M.save()
-        FS.reload()
-        Obj_Dict_save = FS.all()
-        self.assertTrue(Obj_Dict == Obj_Dict_save)
-
     def test_reload(self):
         """
         Method that tests:
-                if file storage was documented
-                and checks reload() method exists
+            if file storage was documented
+            and checks reload() method exists
         """
-        self.assertTrue(FileStorage.reload.__doc__)
-        self.assertIsNotNone(FileStorage.reload.__doc__)
+        self.assertTrue(FileStorage.reload.doc)
+        self.assertIsNotNone(FileStorage.reload.doc)
 
         m_test = FileStorage()
         self.assertTrue(hasattr(m_test, "reload"), True)
@@ -68,7 +66,7 @@ class TestFileStorageClass(unittest.TestCase):
     def test_pep8_conformance_file_storage(self):
         """
         Method that tests:
-                if a file meet with pep8 criteria
+            if a file meet with pep8 criteria
         """
         style = pep8.StyleGuide()
         check = style.check_files(['models/place.py'])
