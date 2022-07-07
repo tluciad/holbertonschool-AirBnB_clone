@@ -57,8 +57,8 @@ class TestFileStorageClass(unittest.TestCase):
             if file storage was documented
             and checks reload() method exists
         """
-        self.assertTrue(FileStorage.reload.doc)
-        self.assertIsNotNone(FileStorage.reload.doc)
+        self.assertTrue(FileStorage.reload.__doc__)
+        self.assertIsNotNone(FileStorage.reload.__doc__)
 
         m_test = FileStorage()
         self.assertTrue(hasattr(m_test, "reload"), True)
